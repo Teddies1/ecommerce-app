@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../config/database';
 import { Product } from '../entities/Product';
-import { Between, Like, ILike } from 'typeorm';
+import { Between, Like, ILike, MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
 
 export class ProductController {
   private productRepository = AppDataSource.getRepository(Product);
@@ -25,6 +25,10 @@ export class ProductController {
 
       if (!isNaN(minPrice) && !isNaN(maxPrice)) {
         where.price = Between(minPrice, maxPrice);
+      } else if (!isNaN(minPrice)) {
+        where.price = MoreThanOrEqual(minPrice);
+      } else if (!isNaN(maxPrice)) {
+        where.price = LessThanOrEqual(maxPrice);
       }
 
       if (search) {
