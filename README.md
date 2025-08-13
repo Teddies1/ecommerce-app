@@ -1,36 +1,13 @@
 # E-Commerce Full-Stack Application
 
-A full-stack e-commerce application built with React (TypeScript) frontend and Node.js/Express backend, featuring real-time order notifications, infinite scroll product listing, and asynchronous order processing.
-
-## Features
-
-- **Product Browsing**: Infinite scroll product listing with server-side filtering
-- **Filtering**: Filter by category, price range, and search term
-- **Product Details**: Detailed view for each product
-- **Order Placement**: Simple order form with quantity selection
-- **Async Processing**: Orders processed asynchronously with 5-10 second delay
-- **Real-time Notifications**: Instant notifications when orders complete
-- **Data Persistence**: PostgreSQL database for products and orders
-- **Dockerized**: Full Docker support for easy deployment
-
-## Tech Stack
+## Tech Stack Used
 
 ### Frontend
 - React with TypeScript
-- React Router for navigation
-- Socket.io-client for real-time updates
-- React Toastify for notifications
-- Axios for API calls
-- Infinite Scroll Component
 
 ### Backend
 - Node.js with Express
-- TypeScript
-- TypeORM for database management
 - PostgreSQL for data storage
-- Redis for queue management
-- Bull for job processing
-- Socket.io for real-time communication
 
 ## Prerequisites
 
@@ -51,7 +28,7 @@ cd ecommerce-app
 docker-compose up -d
 ```
 
-3. Seed the database with sample products:
+3. Seed the database with sample data:
 ```bash
 docker-compose --profile seed run seed
 ```
@@ -74,7 +51,7 @@ cd backend
 npm install
 ```
 
-3. Create a `.env` file:
+3. Create a `.env` file inside the /backend directory:
 ```env
 DB_HOST=localhost
 DB_PORT=5432
@@ -86,6 +63,7 @@ REDIS_PORT=6379
 PORT=5000
 FRONTEND_URL=http://localhost:3000
 ```
+Note: Since this repository is using dummy data the .env file will be pasted here in plaintext. Normally .env files in production settings are secretive and should be stored in a secure environment like a password management website.
 
 4. Start PostgreSQL and Redis (using Docker):
 ```bash
@@ -159,79 +137,17 @@ docker-compose build
 docker-compose --profile seed run seed
 ```
 
-## Architecture
-
-The application follows a microservices architecture with the following components:
-
-1. **Frontend**: React SPA serving the user interface
-2. **Backend API**: Express server handling REST API requests
-3. **Worker**: Background job processor for order fulfillment
-4. **Database**: PostgreSQL for persistent data storage
-5. **Cache/Queue**: Redis for job queue management
-6. **WebSocket**: Real-time communication for order notifications
-
-## Order Processing Flow
-
-1. User places an order through the frontend
-2. Backend creates order record with "pending" status
-3. Order is added to Redis queue for processing
-4. Worker picks up the job and simulates processing (5-10s delay)
-5. Order status is updated to "completed"
-6. Real-time notification sent to frontend via WebSocket
-7. User sees toast notification of order completion
-
-## Environment Variables
-
-### Backend
-- `DB_HOST`: PostgreSQL host
-- `DB_PORT`: PostgreSQL port
-- `DB_USER`: Database user
-- `DB_PASSWORD`: Database password
-- `DB_NAME`: Database name
-- `REDIS_HOST`: Redis host
-- `REDIS_PORT`: Redis port
-- `PORT`: Backend server port
-- `FRONTEND_URL`: Frontend URL for CORS
-
-### Frontend
-- `REACT_APP_API_URL`: Backend API URL
-- `REACT_APP_SOCKET_URL`: WebSocket server URL
-
-## Testing
-
-The application can be tested by:
-
-1. Browsing products with infinite scroll
-2. Using filters (category, price range, search)
-3. Clicking on a product to view details
-4. Placing an order
-5. Waiting for the real-time notification
-
 ## Troubleshooting
 
 ### Database connection issues
 - Ensure PostgreSQL is running and accessible
 - Check database credentials in environment variables
+- Stop any running processes that use PostgreSQL or uses the port number 5432.
 
 ### Redis connection issues
 - Ensure Redis is running
 - Check Redis host and port configuration
+- Stop any running processes that use Redis or uses the port number 6379.
 
-### Frontend not connecting to backend
-- Check CORS settings
-- Verify API URL in frontend environment variables
-
-### Orders not processing
-- Check Redis connection
-- Verify worker is running
-- Check logs for error messages
-
-## Future Enhancements
-
-- User authentication and "My Orders" page
-- Shopping cart functionality
-- Payment integration
-- Order retry logic
-- Dead letter queue for failed orders
-- Product reviews and ratings
-- Admin dashboard for product management
+### Docker permission issues
+- Ensure Docker has the appropriate permissions on your machine.
