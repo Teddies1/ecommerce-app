@@ -4,7 +4,7 @@
 }
 
 .app-header {
-  background: #2c5aa0;
+  background: orange;
   color: white;
   padding: 20px;
   text-align: center;
@@ -32,7 +32,7 @@
 }
 
 .products-main {
-  min-height: 600px;
+  min-height: 700px;
 }
 
 @media (max-width: 768px) {

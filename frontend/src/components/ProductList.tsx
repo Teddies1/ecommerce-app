@@ -66,7 +66,7 @@ const ProductList: React.FC<ProductListProps> = ({ category, minPrice, maxPrice,
   return (
     <div id="scrollable-div"
       style={{
-        height: 650,
+        height: 680,
         overflow: "auto"
       }}
     >
