@@ -92,7 +92,7 @@ const ProductDetail: React.FC = () => {
           <p className="product-description">{product.description}</p>
           
           <div className="product-meta">
-            <div className="price">${product.price.toFixed(2)}</div>
+            <div className="price">${Number(product.price).toFixed(2)}</div>
             <div className="category">{product.category}</div>
           </div>
           
