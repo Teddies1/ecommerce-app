@@ -83,10 +83,6 @@ const ProductDetail: React.FC = () => {
       </button>
       
       <div className="product-detail">
-        <div className="product-image-section">
-          <img src={product.imageUrl} alt={product.name} />
-        </div>
-        
         <div className="product-info-section">
           <h1>{product.name}</h1>
           <p className="product-description">{product.description}</p>
