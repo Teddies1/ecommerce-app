@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../config/database';
 import { Product } from '../entities/Product';
-import { Between, Like, ILike, MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
+import { Between, ILike, MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
 
 export class ProductController {
   private productRepository = AppDataSource.getRepository(Product);
